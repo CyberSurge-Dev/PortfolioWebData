@@ -1,0 +1,61 @@
+media:
+  input: projects
+  output: projects
+
+content:
+  # Form for your single root-level JSON file
+  - name: about_me
+    label: Resume / About Me
+    type: file
+    path: AboutMeData.json
+    format: json
+    fields:
+      - name: name
+        label: Full Name
+        type: string
+        required: true
+      - name: title
+        label: Professional Headline
+        type: string
+      - name: bio
+        label: Short Biography
+        type: text
+      - name: skills
+        label: Technical Skills
+        type: string
+        list: true
+
+  # Collection for your folder-per-project markdown entries
+  - name: projects
+    label: Portfolio Projects
+    type: collection
+    path: projects
+    subfolders: true
+    format: yaml-frontmatter
+    # This automatically creates the directory using the project title (slugified)
+    filename: "{title}/article.md" 
+    fields:
+      - name: title
+        label: Project Title
+        type: string
+        required: true
+      - name: date
+        label: Project Date
+        type: date
+        required: true
+      - name: description
+        label: Project Summary (Card Text)
+        type: text
+        options:
+          rows: 3
+      - name: tags
+        label: Technologies Used
+        type: string
+        list: true
+      - name: featured
+        label: Feature on Homepage?
+        type: boolean
+        default: false
+      - name: body
+        label: Article Content (Markdown Body)
+        type: rich-text
