@@ -10,7 +10,7 @@ content:
   - name: about_me
     label: About Me Profile
     type: file
-    path: src/data/AboutMeData.json # Update this path if your JSON file is located elsewhere
+    path: AboutMeData.json # Update this path if your JSON file is located elsewhere
     format: json
     fields:
       # --- Education Array ---
@@ -107,7 +107,7 @@ content:
   - name: articles
     label: Portfolio Articles
     type: collection
-    path: src/data/articles # Update this folder path to where your individual article JSONs live
+    path: articles # Update this folder path to where your individual article JSONs live
     format: json
     filename: "{primary}.json"
     view:
