@@ -3,59 +3,103 @@ media:
   output: projects
 
 content:
-  # Form for your single root-level JSON file
+  # 1. Accommodates your exact complex AboutMeData.json structure
   - name: about_me
     label: Resume / About Me
     type: file
     path: AboutMeData.json
     format: json
     fields:
-      - name: name
-        label: Full Name
-        type: string
-        required: true
-      - name: title
-        label: Professional Headline
-        type: string
-      - name: bio
-        label: Short Biography
-        type: text
-      - name: skills
-        label: Technical Skills
-        type: string
+      - name: education
+        label: Education History
+        type: object
         list: true
+        fields:
+          - name: institution
+            type: string
+          - name: years
+            type: string
+          - name: gpa
+            type: string
+          - name: honors
+            type: string
+          - name: degrees
+            type: string
+            list: true
+          - name: description
+            type: text
 
-  # Collection for your folder-per-project markdown entries
+      - name: experience
+        label: Work Experience
+        type: object
+        list: true
+        fields:
+          - name: role
+            type: string
+          - name: company
+            type: string
+          - name: duration
+            type: string
+          - name: description
+            type: text
+          - name: bullets
+            type: string
+            list: true
+          - name: technologies
+            type: string
+            list: true
+
+  # 2. Accommodates your exact ArticleMeta structure using Frontmatter
   - name: projects
     label: Portfolio Projects
     type: collection
     path: projects
     subfolders: true
     format: yaml-frontmatter
-    # This automatically creates the directory using the project title (slugified)
-    filename: "{title}/article.md" 
+    filename: "{name}/article.md" # Generates the folder name dynamically from your "name" field
     fields:
-      - name: title
-        label: Project Title
+      - name: name
+        label: Project / Article Name
         type: string
-        required: true
-      - name: date
-        label: Project Date
-        type: date
         required: true
       - name: description
-        label: Project Summary (Card Text)
+        label: Description Summary
         type: text
-        options:
-          rows: 3
+      - name: publishDate
+        label: Publish Date
+        type: date
+        required: true
       - name: tags
-        label: Technologies Used
+        label: Tags
         type: string
         list: true
-      - name: featured
-        label: Feature on Homepage?
-        type: boolean
-        default: false
+
+      # Maps directly to your LinkItem[] array type
+      - name: repositories
+        label: Repository Links
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Link Label (e.g., GitHub Frontend)
+            type: string
+          - name: url
+            label: URL
+            type: string
+
+      # Maps directly to your LinkItem[] array type
+      - name: otherLinks
+        label: Other External Links
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Link Label (e.g., Live Demo)
+            type: string
+          - name: url
+            label: URL
+            type: string
+
       - name: body
-        label: Article Content (Markdown Body)
+        label: Markdown Write-up Body
         type: rich-text
