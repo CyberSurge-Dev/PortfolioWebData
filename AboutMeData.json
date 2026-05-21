@@ -1,0 +1,252 @@
+
+{
+  "education": [
+    {
+      "institution": "North Carolina State University",
+      "years": "2025 - 2029 (Expected)",
+      "gpa": "4.0",
+      "honors": "Deans List",
+      "degrees": [
+        "B.S. Electrical Engineering (Controls and Robotics)",
+        "B.S. Computer Engineering int (Embedded Systems)",
+        "Graphics Communication Minor"
+      ],
+      "description": "Pursuing interdisciplinary engineering studies focused on robotics, embedded systems, mechanical design, and controls."
+    },
+    {
+      "institution": "Cox Mill High School",
+      "years": "2020 - 2025",
+      "gpa": "4.44 / 3.98",
+      "honors": "Summa Cum Laude, National Honor Society, AoIT Programming Award",
+      "degrees": [
+        "High School Diploma"
+      ],
+      "description": "Completed AP curriculum with emphasis on STEM courses. President of Computer Science Club."
+    }
+  ],
+  "skills": {
+    "tabs": [
+      { "id": "professional", "label": "Professional" },
+      { "id": "technical", "label": "Technical" },
+      { "id": "practical", "label": "Practical" }
+    ],
+      "categories": {
+        "professional": [
+          {
+            "name": "Leadership",
+            "years": "5+",
+            "description": "Held multiple leadership roles through Boy Scouts, student organizations, and team-based environments."
+          },
+          {
+            "name": "Communication",
+            "years": "4+",
+            "description": "Developed strong communication skills through customer-facing work, group collaboration, and peer tutoring."
+          },
+          {
+            "name": "Problem Solving",
+            "years": "4+",
+            "description": "Applied logical thinking to solve problems ranging from robotics and engineering to outdoor skills."
+          },
+          {
+            "name": "Teamwork",
+            "years": "5+",
+            "description": "Worked in collaborative environments, both in leadership and support roles."
+          },
+          {
+            "name": "Time Management",
+            "years": "4+",
+            "description": "Balanced academics, extracurricular activities, and personal projects while meeting deadlines and maintaining high standards."
+          }
+        ],
+        "technical": [
+          {
+            "name": "SolidWorks",
+            "years": "3+",
+            "description": "Experienced in CAD modeling and mechanical design for FTC Robotics, personal projects, and coursework."
+          },
+          {
+            "name": "MATLAB",
+            "years": "2+",
+            "description": "Used MATLAB for numerical analysis, symbolic math, and related coursework."
+          },
+          {
+            "name": "Electronics",
+            "years": "3+",
+            "description": "Created numerous personal projects using Ardunio, and Raspberry Pi micro-controllers."
+          },
+          {
+            "name": "Programming",
+            "years": "7+",
+            "description": "Developed coding skills from a young age, experience in variety of applications and languages. Python, Arduino, C#, Java, etc."
+          },
+          {
+            "name": "3D Printing",
+            "years": "4+",
+            "description": "Experience designing parts for 3D Printing, as well as operating and maintaining 3D printers."
+          },
+          {
+            "name": "Microsoft Excel",
+            "years": "1+",
+            "description": "Used Excel for data organization, calculations, and charts."
+          }
+        ],
+        "practical": [
+          {
+            "name": "Assembly",
+            "years": "5+",
+            "description": "Experienced assembling and improving systems from coursework, FTC Robotics, and personal projects."
+          },
+          {
+            "name": "Troubleshooting",
+            "years": "4+",
+            "description": "Strong ability to quickly diagnose issues and fix them."
+          },
+          {
+            "name": "Hands-On Building",
+            "years": "3+",
+            "description": "Comfortable working with tools, components, and assemblies requiring precision and attention to detail."
+          },
+          {
+            "name": "Prototyping",
+            "years": "3+",
+            "description": "Built early-stage concepts and functional prototypes by combining design, fabrication, and iteration."
+          },
+          {
+            "name": "Adaptability",
+            "years": "5+",
+            "description": "Able to learn new systems, tools, and environments quickly."
+          }
+        ]
+      }
+  },
+  "experience": [
+  {
+  "role": "Camp Counselor",
+  "company": "Town of Huntersville",
+  "duration": "May 2026 - Present",
+  "description": "Supervise and mentor middle school students in an outdoor adventure camp environment while ensuring safety, engagement, and positive group experiences.",
+  "bullets": [
+    "Lead daily activities, games, and team-building exercises for groups of middle school campers.",
+    "Ensure camper safety through active supervision, rule enforcement, and emergency preparedness.",
+    "Facilitate trips, outings, and overnight camping experiences while maintaining organization and accountability.",
+    "Build leadership, communication, and conflict-resolution skills by guiding campers and managing group dynamics."
+  ],
+
+    "technologies": [
+      "Customer Service",
+      "Communication",
+      "Teamwork",
+      "Operations"
+    ]
+  },
+  {
+    "role": "Team Member",
+    "company": "Andy's Frozen Custard",
+    "duration": "May 2025 - Present",
+    "description": "Provide customer service and support daily operations in a fast-paced retail environment while maintaining quality and efficiency.",
+    "bullets": [
+      "Assist customers with orders while creating a positive guest experience.",
+      "Work collaboratively with team members during high-volume shifts.",
+      "Develop strong communication, multitasking, and time management skills.",
+      "Maintain cleanliness, organization, and operational standards."
+    ],
+    "technologies": [
+      "Customer Service",
+      "Communication",
+      "Teamwork",
+      "Operations"
+    ]
+  },
+  {
+    "role": "PL, ASPL, SPL, ASM",
+    "company": "Boy Scouts of America",
+    "duration": "Mar 2017 - Present",
+    "description": "Held multiple progressive leadership positions while organizing events, mentoring peers, and completing community service initiatives.",
+    "bullets": [
+      "Served in Patrol Leader, Assistant Senior Patrol Leader, Senior Patrol Leader, and Assistant Scoutmaster roles.",
+      "Led teams during events, outings, and structured activities.",
+      "Participated in dozens of service projects benefiting the local community.",
+      "Completed Eagle Scout project building benches and picnic tables for a community pavilion."
+    ],
+    "technologies": [
+      "Leadership",
+      "Project Planning",
+      "Mentorship",
+      "Teamwork"
+    ]},
+  {
+    "role": "Team Captain",
+    "company": "FIRST Robotics",
+    "duration": "Sep 2022 - Aug 2025",
+    "description": "Led robotics team members through technical projects, competition preparation, and collaborative problem solving.",
+    "bullets": [
+      "Served as Team Captain, helping organize members and project priorities.",
+      "Supported robot design, testing, and iterative improvements.",
+      "Built leadership skills through mentoring and team coordination.",
+      "Worked under deadlines to prepare systems for competition."
+    ],
+    "technologies": [
+      "Leadership",
+      "Robotics",
+      "Mechanical Design",
+      "Problem Solving"
+    ]
+  }],
+  "awards": [
+  {
+    "title": "Dean's List",
+    "category": "NC State",
+    "date": "2025 - Present",
+    "description": "Recognized for maintaining a 3.5 GPA across several semesters.",
+    "link": null
+  },
+  {
+    "title": "FEDD First Place Winner",
+    "category": "NC State",
+    "date": "2026",
+    "description": "Awarded first place in the FEDD engineering competition for innovation, design, and technical execution.",
+    "link": null
+  },
+  {
+    "title": "E101 Spring Study Abroad",
+    "category": "NC State",
+    "date": "2026",
+    "description": "Selected to participate in the E101 Spring Study Abroad engineering program.",
+    "link": null
+  },
+  {
+    "title": "Eagle Scout",
+    "category": "Scouting America",
+    "date": "2023",
+    "description": "Earned the highest rank in Scouting through demonstrated leadership, service, and completion of a community improvement project.",
+    "link": null
+  },
+  {
+    "title": "National Youth Leadership Training",
+    "category": "Scouting America",
+    "date": "2023",
+    "description": "Completed week long course focused on leadership development in active team environment.",
+    "link": null
+  },
+  {
+    "title": "National Honor Society",
+    "category": "Cox Mill High School",
+    "date": "2022 - 2025",
+    "description": "Selected based on scholarship, leadership, service, and character.",
+    "link": null
+  },
+  {
+    "title": "AoIT Programming Award",
+    "category": "Cox Mill High School",
+    "date": "2021",
+    "description": "Selected for outstanding achievement in programming coursework.",
+    "link": null
+  },
+  {
+    "title": "Certified Associate in Python Programming (PCAP)",
+    "category": "Cox Mill High School",
+    "date": "2022",
+    "description": "Certification of understanding for basic programming concepts in object oriented programming.",
+    "link": "https://verify.openedg.org/?id=JjQx.6TUf.id8v"
+  }]
+}
