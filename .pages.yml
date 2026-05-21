@@ -1,19 +1,18 @@
-# Setup your media folder where images and attached documents will be uploaded
+# PagesCMS will upload all images/files into an 'assets' folder at the root of your repo
 media:
-  input: public/uploads
-  output: /uploads
+  input: assets
+  output: assets
 
 content:
   # ----------------------------------------------------------------
-  # 1. About Me Data (Single File Configuration)
+  # 1. About Me Data
   # ----------------------------------------------------------------
   - name: about_me
     label: About Me Profile
     type: file
-    path: AboutMeData.json # Update this path if your JSON file is located elsewhere
+    path: AboutMeData.json
     format: json
     fields:
-      # --- Education Array ---
       - name: education
         label: Education History
         type: object
@@ -26,7 +25,6 @@ content:
           - { name: degrees, label: Degrees Earned, type: string, list: true }
           - { name: description, label: Description, type: text }
 
-      # --- Skills Map Object ---
       - name: skills
         label: Skills Matrix
         type: object
@@ -36,8 +34,8 @@ content:
             type: object
             list: true
             fields:
-              - { name: id, label: Tab ID (e.g., technical), type: string, required: true }
-              - { name: label, label: Tab UI Label (e.g., Technical), type: string, required: true }
+              - { name: id, label: Tab ID, type: string, required: true }
+              - { name: label, label: Tab UI Label, type: string, required: true }
           - name: categories
             label: Skills Categories
             type: object
@@ -67,7 +65,6 @@ content:
                   - { name: years, label: Years of Experience, type: string }
                   - { name: description, label: Short Description, type: text }
 
-      # --- Experience Array ---
       - name: experience
         label: Work & Leadership Experience
         type: object
@@ -80,7 +77,6 @@ content:
           - { name: bullets, label: Bullet Points, type: string, list: true }
           - { name: technologies, label: Technologies & Keywords, type: string, list: true }
 
-      # --- Awards Array ---
       - name: awards
         label: Awards & Certifications
         type: object
@@ -92,7 +88,6 @@ content:
           - { name: description, label: Description, type: text }
           - { name: link, label: Verification Link (Optional), type: string }
 
-      # --- Logos Array (Optional property handled safely) ---
       - name: logos
         label: Organization Logos
         type: object
@@ -102,31 +97,46 @@ content:
           - { name: url, label: Logo Image, type: image }
 
   # ----------------------------------------------------------------
-  # 2. Articles Collection (Folder-based Configuration)
+  # 2. Meta Articles (Global Tags Settings)
+  # ----------------------------------------------------------------
+  - name: meta_articles
+    label: Global Article Settings
+    type: file
+    path: MetaArticles.json
+    format: json
+    fields:
+      - name: tags
+        label: Available Global Tags
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Tag Name, type: string, required: true }
+          - { name: color, label: Hex Color Code, type: string }
+
+  # ----------------------------------------------------------------
+  # 3. Articles Collection (Folder-per-article structure at root)
   # ----------------------------------------------------------------
   - name: articles
     label: Portfolio Articles
     type: collection
-    path: articles # Update this folder path to where your individual article JSONs live
-    format: json
-    filename: "{primary}.json"
+    path: .
+    filename: "{slug}/article.md"
+    format: md
     view:
       primary: name
     fields:
       - { name: name, label: Article Title, type: string, required: true }
       - { name: description, label: Summary Description, type: text }
-      - { name: tags, label: Tags, type: string, list: true }
+      - { name: tags, label: Tags assigned, type: string, list: true }
       
-      # --- Code Repositories ---
       - name: repositories
         label: GitHub Repositories
         type: object
         list: true
         fields:
-          - { name: name, label: Repo Identifier (e.g., User/Repo), type: string }
+          - { name: name, label: Repo Identifier (User/Repo), type: string }
           - { name: url, label: Repo Link, type: string }
 
-      # --- External References ---
       - name: otherLinks
         label: References & Resources
         type: object
@@ -136,15 +146,20 @@ content:
           - { name: url, label: Resource URL, type: string }
 
       - { name: publishDate, label: Date Published, type: date }
-      - { name: coverImages, label: Cover Gallery, type: image, list: true }
 
-      # --- Document Attachments ---
+      # --- CMS MANAGED UPLOADS ---
+      
+      # 1. Maps directly to: coverImages: string[]
+      - name: coverImages
+        label: Cover Image Gallery
+        type: image
+        list: true
+
+      # 2. Maps directly to: files: LinkItem[]
       - name: files
-        label: Project Files / Attachments
+        label: Project Files & Downloads
         type: object
         list: true
         fields:
-          - { name: name, label: Attachment Label, type: string }
-          - { name: url, label: Upload File, type: file }
-
-      - { name: folderName, label: Optional Folder Sub-Path, type: string }
+          - { name: name, label: File Display Name (e.g., Robot CAD Schematic), type: string, required: true }
+          - { name: url, label: Upload File Asset, type: file, required: true }
