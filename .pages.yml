@@ -1,184 +1,150 @@
-# 1. Setup media directories for asset upload targets
+# Setup your media folder where images and attached documents will be uploaded
 media:
-  - name: project_images
-    label: Project Gallery / Covers
-    input: projects/media/images
-    output: projects/media/images
-  - name: project_files
-    label: Project Downloads / Attachments
-    input: projects/media/files
-    output: projects/media/files
+  input: public/uploads
+  output: /uploads
 
 content:
-  # ==========================================
-  # SECTION 1: ABOUT ME / RESUME JSON 
-  # ==========================================
+  # ----------------------------------------------------------------
+  # 1. About Me Data (Single File Configuration)
+  # ----------------------------------------------------------------
   - name: about_me
-    label: Resume / About Me
+    label: About Me Profile
     type: file
-    path: AboutMeData.json
+    path: src/data/AboutMeData.json # Update this path if your JSON file is located elsewhere
     format: json
     fields:
+      # --- Education Array ---
       - name: education
         label: Education History
         type: object
         list: true
         fields:
-          - name: institution
-            type: string
-          - name: years
-            type: string
-          - name: gpa
-            type: string
-          - name: honors
-            type: string
-          - name: degrees
-            type: string
-            list: true
-          - name: description
-            type: text
+          - { name: institution, label: Institution, type: string, required: true }
+          - { name: years, label: Years/Duration, type: string }
+          - { name: gpa, label: GPA, type: string }
+          - { name: honors, label: Honors & Distinctions, type: string }
+          - { name: degrees, label: Degrees Earned, type: string, list: true }
+          - { name: description, label: Description, type: text }
 
+      # --- Skills Map Object ---
       - name: skills
-        label: Technical Skills
+        label: Skills Matrix
         type: object
         fields:
           - name: tabs
-            label: Navigation Tabs Layout
+            label: Navigation Tabs
             type: object
             list: true
             fields:
-              - name: id
-                label: Tab ID Key (e.g., frontend)
-                type: string
-              - name: label
-                label: Tab Display Label (e.g., Frontend Frameworks)
-                type: string
+              - { name: id, label: Tab ID (e.g., technical), type: string, required: true }
+              - { name: label, label: Tab UI Label (e.g., Technical), type: string, required: true }
           - name: categories
-            label: Skills Matrix (JSON Dictionary Map)
-            type: code
-            options:
-              format: json
-            description: "Matches your Record type schema. Example: { \"frontend\": [ { \"name\": \"Vue\", \"years\": \"3\", \"description\": \"...\" } ] }"
+            label: Skills Categories
+            type: object
+            fields:
+              - name: professional
+                label: Professional Skills
+                type: object
+                list: true
+                fields:
+                  - { name: name, label: Skill Name, type: string }
+                  - { name: years, label: Years of Experience, type: string }
+                  - { name: description, label: Short Description, type: text }
+              - name: technical
+                label: Technical Skills
+                type: object
+                list: true
+                fields:
+                  - { name: name, label: Skill Name, type: string }
+                  - { name: years, label: Years of Experience, type: string }
+                  - { name: description, label: Short Description, type: text }
+              - name: practical
+                label: Practical Skills
+                type: object
+                list: true
+                fields:
+                  - { name: name, label: Skill Name, type: string }
+                  - { name: years, label: Years of Experience, type: string }
+                  - { name: description, label: Short Description, type: text }
 
+      # --- Experience Array ---
       - name: experience
-        label: Professional Work Experience
+        label: Work & Leadership Experience
         type: object
         list: true
         fields:
-          - name: role
-            type: string
-          - name: company
-            type: string
-          - name: duration
-            type: string
-          - name: description
-            type: text
-          - name: bullets
-            type: string
-            list: true
-          - name: technologies
-            type: string
-            list: true
+          - { name: role, label: Role/Position, type: string, required: true }
+          - { name: company, label: Organization/Company, type: string, required: true }
+          - { name: duration, label: Duration, type: string }
+          - { name: description, label: Base Description, type: text }
+          - { name: bullets, label: Bullet Points, type: string, list: true }
+          - { name: technologies, label: Technologies & Keywords, type: string, list: true }
 
+      # --- Awards Array ---
       - name: awards
-        label: Awards, Honors & Recognitions
+        label: Awards & Certifications
         type: object
         list: true
         fields:
-          - name: title
-            type: string
-          - name: category
-            type: string
-          - name: date
-            type: string
-          - name: description
-            type: text
-          - name: link
-            type: string
+          - { name: title, label: Award Title, type: string, required: true }
+          - { name: category, label: Issuing Body / Category, type: string }
+          - { name: date, label: Date Awarded, type: string }
+          - { name: description, label: Description, type: text }
+          - { name: link, label: Verification Link (Optional), type: string }
 
+      # --- Logos Array (Optional property handled safely) ---
       - name: logos
-        label: Associated Company Logos
+        label: Organization Logos
         type: object
         list: true
         fields:
-          - name: name
-            type: string
-          - name: url
-            type: string
+          - { name: name, label: Organization Name, type: string }
+          - { name: url, label: Logo Image, type: image }
 
-  # ==========================================
-  # SECTION 2: PORTFOLIO ARTICLES (FRONTMATTER)
-  # ==========================================
-  - name: projects
-    label: Portfolio Projects
+  # ----------------------------------------------------------------
+  # 2. Articles Collection (Folder-based Configuration)
+  # ----------------------------------------------------------------
+  - name: articles
+    label: Portfolio Articles
     type: collection
-    path: projects
-    subfolders: true
-    format: yaml-frontmatter
-    filename: "{name}/article.md"
+    path: src/data/articles # Update this folder path to where your individual article JSONs live
+    format: json
+    filename: "{primary}.json"
+    view:
+      primary: name
     fields:
-      - name: name
-        label: Project / Article Name
-        type: string
-        required: true
-      - name: description
-        label: Short Summary Description
-        type: text
-      - name: publishDate
-        label: Publication Date
-        type: date
-        required: true
-      - name: tags
-        label: Article Tags
-        type: string
-        list: true
-
+      - { name: name, label: Article Title, type: string, required: true }
+      - { name: description, label: Summary Description, type: text }
+      - { name: tags, label: Tags, type: string, list: true }
+      
+      # --- Code Repositories ---
       - name: repositories
-        label: Code Repositories
+        label: GitHub Repositories
         type: object
         list: true
         fields:
-          - name: name
-            label: Label (e.g., GitHub Backend)
-            type: string
-          - name: url
-            label: Repository URL
-            type: string
+          - { name: name, label: Repo Identifier (e.g., User/Repo), type: string }
+          - { name: url, label: Repo Link, type: string }
 
+      # --- External References ---
       - name: otherLinks
-        label: External Project Links
+        label: References & Resources
         type: object
         list: true
         fields:
-          - name: name
-            label: Label (e.g., Live Demo App)
-            type: string
-          - name: url
-            label: URL Location
-            type: string
+          - { name: name, label: Resource Name, type: string }
+          - { name: url, label: Resource URL, type: string }
 
-      # Media upload fields mapping directly to your ArticleMeta types
-      - name: coverImages
-        label: Cover Gallery / Images
-        type: image
-        options:
-          media: project_images
-          multiple: true
+      - { name: publishDate, label: Date Published, type: date }
+      - { name: coverImages, label: Cover Gallery, type: image, list: true }
 
+      # --- Document Attachments ---
       - name: files
-        label: Downloadable Files & Documents
+        label: Project Files / Attachments
         type: object
         list: true
         fields:
-          - name: name
-            label: Document Display Name (e.g., Project Blueprint PDF)
-            type: string
-          - name: url
-            label: Upload Document Attachment
-            type: file
-            options:
-              media: project_files
+          - { name: name, label: Attachment Label, type: string }
+          - { name: url, label: Upload File, type: file }
 
-      - name: body
-        label: Markdown Article Content Body
-        type: rich-text
+      - { name: folderName, label: Optional Folder Sub-Path, type: string }
