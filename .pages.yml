@@ -1,9 +1,18 @@
+# 1. Setup media directories for asset upload targets
 media:
-  input: projects
-  output: projects
+  - name: project_images
+    label: Project Gallery / Covers
+    input: projects/media/images
+    output: projects/media/images
+  - name: project_files
+    label: Project Downloads / Attachments
+    input: projects/media/files
+    output: projects/media/files
 
 content:
-  # 1. Accommodates your exact complex AboutMeData.json structure
+  # ==========================================
+  # SECTION 1: ABOUT ME / RESUME JSON 
+  # ==========================================
   - name: about_me
     label: Resume / About Me
     type: file
@@ -29,8 +38,30 @@ content:
           - name: description
             type: text
 
+      - name: skills
+        label: Technical Skills
+        type: object
+        fields:
+          - name: tabs
+            label: Navigation Tabs Layout
+            type: object
+            list: true
+            fields:
+              - name: id
+                label: Tab ID Key (e.g., frontend)
+                type: string
+              - name: label
+                label: Tab Display Label (e.g., Frontend Frameworks)
+                type: string
+          - name: categories
+            label: Skills Matrix (JSON Dictionary Map)
+            type: code
+            options:
+              format: json
+            description: "Matches your Record type schema. Example: { \"frontend\": [ { \"name\": \"Vue\", \"years\": \"3\", \"description\": \"...\" } ] }"
+
       - name: experience
-        label: Work Experience
+        label: Professional Work Experience
         type: object
         list: true
         fields:
@@ -49,57 +80,105 @@ content:
             type: string
             list: true
 
-  # 2. Accommodates your exact ArticleMeta structure using Frontmatter
+      - name: awards
+        label: Awards, Honors & Recognitions
+        type: object
+        list: true
+        fields:
+          - name: title
+            type: string
+          - name: category
+            type: string
+          - name: date
+            type: string
+          - name: description
+            type: text
+          - name: link
+            type: string
+
+      - name: logos
+        label: Associated Company Logos
+        type: object
+        list: true
+        fields:
+          - name: name
+            type: string
+          - name: url
+            type: string
+
+  # ==========================================
+  # SECTION 2: PORTFOLIO ARTICLES (FRONTMATTER)
+  # ==========================================
   - name: projects
     label: Portfolio Projects
     type: collection
     path: projects
     subfolders: true
     format: yaml-frontmatter
-    filename: "{name}/article.md" # Generates the folder name dynamically from your "name" field
+    filename: "{name}/article.md"
     fields:
       - name: name
         label: Project / Article Name
         type: string
         required: true
       - name: description
-        label: Description Summary
+        label: Short Summary Description
         type: text
       - name: publishDate
-        label: Publish Date
+        label: Publication Date
         type: date
         required: true
       - name: tags
-        label: Tags
+        label: Article Tags
         type: string
         list: true
 
-      # Maps directly to your LinkItem[] array type
       - name: repositories
-        label: Repository Links
+        label: Code Repositories
         type: object
         list: true
         fields:
           - name: name
-            label: Link Label (e.g., GitHub Frontend)
+            label: Label (e.g., GitHub Backend)
             type: string
           - name: url
-            label: URL
+            label: Repository URL
             type: string
 
-      # Maps directly to your LinkItem[] array type
       - name: otherLinks
-        label: Other External Links
+        label: External Project Links
         type: object
         list: true
         fields:
           - name: name
-            label: Link Label (e.g., Live Demo)
+            label: Label (e.g., Live Demo App)
             type: string
           - name: url
-            label: URL
+            label: URL Location
             type: string
+
+      # Media upload fields mapping directly to your ArticleMeta types
+      - name: coverImages
+        label: Cover Gallery / Images
+        type: image
+        options:
+          media: project_images
+          multiple: true
+
+      - name: files
+        label: Downloadable Files & Documents
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Document Display Name (e.g., Project Blueprint PDF)
+            type: string
+          - name: url
+            label: Upload Document Attachment
+            type: file
+            options:
+              media: project_files
 
       - name: body
-        label: Markdown Write-up Body
+        label: Markdown Article Content Body
         type: rich-text
